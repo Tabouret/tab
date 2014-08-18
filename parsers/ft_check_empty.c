@@ -6,11 +6,11 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 23:39:20 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/19 01:07:12 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 01:23:08 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_gps(char **tab, int value[], char empty)
+int		ft_gps(char **tab, int value[], char empty, char solved_char)
 {
 	int x;
 	int y;
@@ -27,7 +27,7 @@ int		ft_gps(char **tab, int value[], char empty)
 			tab_check [2] = value[2];
 			if (ft_check_empty(tab, tab_check, empty);)
 			{
-				ft_solved()
+				ft_solved(tab, tab_check, solved_char);
 			}
 		}
 	}

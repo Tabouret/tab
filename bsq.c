@@ -6,24 +6,33 @@
 /*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/18 18:43:13 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/18 22:09:43 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
 #include <stdio.h>
 
+char	*ft_catstr(char *dest, char *str)
+{
+	int		old_size;
+	int 	new_size;
+	char	buffer[BUFF_SIZE + 1];
+
+	if (!(
+
+}
 char	*ft_buffer(char **argv)
 {
 	char	*buffer;
 	int		file;
 	int		size;
 
-	buffer = (char *)malloc(BUFF_SIZE);
+	buffer = (char *)malloc(BUFF_SIZE + 1);
 	if (!(file = open(argv[1], O_RDONLY, S_IREAD)))
 		file = 0;
 	size = read(file, buffer, BUFF_SIZE);
-	buffer[size] = '\0';
+	buffer[size + 1] = '\0';
 	return(buffer);
 }
 

@@ -6,7 +6,7 @@
 /*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 17:52:00 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/18 19:01:58 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/18 22:24:27 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,14 @@ char	**ft_make_tab(char *str, int x, int y)
 		y = 0;
 	}
 	return (src);
+}
+
+int		ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++
+	return (i);
 }

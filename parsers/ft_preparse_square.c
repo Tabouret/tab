@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 21:58:09 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/18 22:26:21 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/18 22:36:20 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,19 @@ int		ft_biggest_offset_x (int x, int y)
 int		ft_biggest_offset_y (int x, int y)
 {
 	return(y - ft_biggest_square(x, y));
+}
+
+int		ft_check_empty_square (char **tab,int offset_x, int offset_y, int size, char empty_char)
+{
+	int x;
+	int y;
+
+	x = -1;
+	y = -1;
+	while (++y <= size)
+	{
+		while (++x <= size)
+		{
+		}
+	}
 }

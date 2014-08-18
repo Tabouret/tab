@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 01:24:26 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 01:32:56 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int		ft_biggest_offset_x (int x, int y);
 int		ft_biggest_offset_y (int x, int y);
 int		ft_biggest_square (int x, int y);
 int		ft_gps(char **tab, int value[], char empty, char solved_char);
+void	ft_print_tab (char **tab);
 
 #endif

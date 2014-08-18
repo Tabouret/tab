@@ -6,33 +6,34 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 23:39:20 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/19 00:03:09 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 00:31:47 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_gps(char **tab, int size_x, int size_y, int sqr_size, char empty)
+int		*ft_gps(char **tab, int value[], char empty)
 {
 	int x;
 	int y;
-	int check;
+	int tab_check[2];
 
 	x = -1;
 	y = -1;
-	yes_we_check = 0;
-	while (y <= (size_y - sqr_size))
+	while (++y <= (value[1] - value[2]))
 	{
-		while(x <= (size_x - sqr_size))
+		while(++x <= (value[0] - value[2]))
 		{
-			check = ft_check_empty(tab, x, y, sqr_size, empty);
-			if (check == 1)
+			tab_check [0] = x;
+			tab_check [1] = y;
+			tab_check [2] = value[2];
+			if (ft_check_empty(tab, tab_check, empty);)
 			{
-
+				/*put win statement here*/
 			}
 		}
 	}
 }
 
-int		ft_check_empty (char **tab, int off_x, int off_y, int size, char empty)
+int		ft_check_empty (char **tab, int tab_check[], char empty)
 {
 	int x;
 	int y;
@@ -40,11 +41,11 @@ int		ft_check_empty (char **tab, int off_x, int off_y, int size, char empty)
 	x = -1;
 	y = -1;
 
-	while (++x <= size)
+	while (++x <= tab_check[2])
 	{
-		while (++y <= size)
+		while (++y <= tab_check[2])
 		{
-			if (tab[x + off_x][y + off_y] != empty)
+			if (tab[x + tab_check[0]][y + tab_check[1]] != empty)
 			{
 				return (0);
 			}

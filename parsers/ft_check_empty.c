@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 23:39:20 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/18 23:56:16 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 00:03:09 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int		ft_gps(char **tab, int size_x, int size_y, int sqr_size, char empty)
 		while(x <= (size_x - sqr_size))
 		{
 			check = ft_check_empty(tab, x, y, sqr_size, empty);
-			if (n == 0)
+			if (check == 1)
+			{
+
+			}
 		}
 	}
 }
@@ -43,9 +46,9 @@ int		ft_check_empty (char **tab, int off_x, int off_y, int size, char empty)
 		{
 			if (tab[x + off_x][y + off_y] != empty)
 			{
-				return (1);
+				return (0);
 			}
 		}
 	}
-	return (0);
+	return (1);
 }

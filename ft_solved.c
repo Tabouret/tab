@@ -6,18 +6,17 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 01:07:38 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/19 01:35:23 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 01:54:20 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void ft_solved(char **tab, int tab_check[], char solved_char)
+void	ft_solved(char **tab, int tab_check[], char solved_char)
 {
 	int x;
 	int y;
 
 	x = -1;
 	y = -1;
-
 	while (++x <= tab_check[2])
 	{
 		while (++y <= tab_check[2])

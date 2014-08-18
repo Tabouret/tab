@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 17:52:00 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/18 22:24:27 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/19 01:52:43 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
 
-int ft_atoi(char *s1)
+int		ft_atoi(char *s1)
 {
 	int i;
 	int nb;
@@ -85,11 +85,11 @@ char	**ft_make_tab(char *str, int x, int y)
 	ft_putstr(str);
 
 	while (str[i])
-	{	
+	{
 
 		ft_putstr(str);
 		while (str[i] != '\n')
-		{ 
+		{
 			src[x][y] = str[i];
 			i++;
 			y++;

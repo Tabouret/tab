@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 23:39:20 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/19 01:23:08 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 01:56:43 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int		ft_gps(char **tab, int value[], char empty, char solved_char)
 	y = -1;
 	while (++y <= (value[1] - value[2]))
 	{
-		while(++x <= (value[0] - value[2]))
+		while (++x <= (value[0] - value[2]))
 		{
 			tab_check [0] = x;
 			tab_check [1] = y;
 			tab_check [2] = value[2];
-			if (ft_check_empty(tab, tab_check, empty);)
+			if ((ft_check_empty(tab, tab_check, empty))
 			{
 				ft_solved(tab, tab_check, solved_char);
 			}

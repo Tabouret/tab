@@ -6,14 +6,14 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 22:39:06 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/19 22:41:42 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "./includes/ft_header.h"
 #include <stdio.h>
-
+blabla bite
 char		*ft_buffer(char **argv)
 {
 	char	*buffer;

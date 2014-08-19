@@ -3,12 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/08/19 21:27:41 by elacombe         ###   ########.fr       */
+=======
+/*   Updated: 2014/08/19 21:17:05 by pollier          ###   ########.fr       */
+>>>>>>> FETCH_HEAD
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "./includes/ft_header.h"
 #include <stdio.h>
@@ -150,8 +155,47 @@ t_stats		*get_stats(int i)
 t_stats		*ft_get_param(char **argv, int i)
 {
 	int			test;
-	t_stats		*stats;	
+	t_stats		*stats;
 
+<<<<<<< HEAD
+=======
+=======
+	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
+		return (NULL);
+	stats->height = ft_atoi(param);
+	while (*param >= '0' && *param <= '9')
+		param++;
+	stats->empty = *param;
+	param++;
+	stats->obstacle = *param;
+	param++;
+	stats->full = *param;
+	return (stats);
+}
+
+t_stats	*get_stats(int i)
+{
+	char	*param;
+	char	buffer[BUFF_SIZE + 1];
+	int		test;
+	t_stats	*stats;
+
+	if (!(test = read(i, buffer, BUFF_SIZE)))
+		return (NULL);
+	if (!(param = ft_read_line(buffer)))
+		return (NULL);
+	stats = create_stats(param);
+	free(param);
+	return (stats);
+}
+
+char	*ft_get_params(char **argv, int i)
+{
+	int			test;
+	t_stats		*stats;
+
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
 		return (NULL);

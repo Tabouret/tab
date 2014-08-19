@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 16:16:16 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 23:52:35 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 00:25:38 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ char	*ft_read_grid_first_line(char *str)
 	}
 	if (!(reading = (char *)malloc(i)))
 		return (NULL);
-	i = 0;
-	while (str[i] != '\n')
-	{
+	i = 0;>
 		reading[i] = str[i];
 		i++;
 	}

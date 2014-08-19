@@ -6,12 +6,15 @@
 /*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2014/08/19 18:38:02 by elacombe         ###   ########.fr       */
+=======
+/*   Updated: 2014/08/19 17:55:57 by elacombe         ###   ########.fr       */
+>>>>>>> FETCH_HEAD
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
-#include <stdio.h>
 
 char	*ft_buffer(char **argv)
 {
@@ -85,7 +88,11 @@ t_stats	*create_stats(char *param)
 	stats->full = *param;
 	return (stats);
 }
+t_stats	*create_stats(char *param)
+{
+	t_stats	*stats;
 
+<<<<<<< HEAD
 t_stats	*get_stats(int i)
 {
 	char	*param;
@@ -110,13 +117,52 @@ char	*ft_get_params(char **argv, int i)
 	int			test;
 	t_stats		*stats;	
 
+=======
+	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
+		return (NULL);
+	stats->height = ft_atoi(param);
+	while (*param >= '0' && *param <= '9')
+		param++;
+	stats->empty = *param;
+	param++;
+	stats->obstacle = *param;
+	param++;
+	stats->full = *param;
+	return (stats);
+}
+
+t_stats	*get_stats(int i)
+{
+	char	*param;
+	char	buffer[BUFF_SIZE + 1];
+	int		test;
+	t_stats	*stats;
+
+	if (!(test = read(i, buffer, BUFF_SIZE)))
+		return (NULL);
+	if (!(param = ft_read_line(buffer)))
+		return (NULL);
+	stats = create_stats(param);
+	free(param);
+	return (stats);
+}
+
+char	*ft_get_params(char **argv, int i)
+{
+	int			test;
+	t_stats		*stats;	
+
+>>>>>>> FETCH_HEAD
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
 		return (NULL);
 	stats = get_stats(test);
 	if (!(close(test)) || !stats)
 		return (NULL);
+<<<<<<< HEAD
 	ft_read_files(stats);
+=======
+>>>>>>> FETCH_HEAD
 	return ("");
 }
 char	*ft_what_input(int argc, char **argv)

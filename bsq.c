@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2014/08/19 18:38:02 by elacombe         ###   ########.fr       */
-=======
-/*   Updated: 2014/08/19 17:55:57 by elacombe         ###   ########.fr       */
->>>>>>> FETCH_HEAD
+/*   Updated: 2014/08/19 21:17:05 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "./includes/ft_header.h"
 
@@ -39,7 +36,7 @@ t_stats	*ft_read_files(char *filename)
 	int		r;
 	char 	buff[BUFF_SIZE + 1];
 	printf("read config\n");
-	
+
 	stats = create_stats(filename);
 	if (!stats)
 		return (NULL);
@@ -115,7 +112,7 @@ t_stats	*get_stats(int i)
 char	*ft_get_params(char **argv, int i)
 {
 	int			test;
-	t_stats		*stats;	
+	t_stats		*stats;
 
 =======
 	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
@@ -150,7 +147,7 @@ t_stats	*get_stats(int i)
 char	*ft_get_params(char **argv, int i)
 {
 	int			test;
-	t_stats		*stats;	
+	t_stats		*stats;
 
 >>>>>>> FETCH_HEAD
 	test = open(argv[i], O_RDONLY);

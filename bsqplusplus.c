@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 00:58:54 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 01:44:57 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,14 @@ t_params		*ft_read_files(char *filename)
 	int		d;
 	int		index;
 	int		r;
+	int		u;
 	char 	buff[BUFF_SIZE + 1];
 
-	if ((content = (char*)malloc(sizeof(char) *	(params->width * params->height + params->width))) == NULL)
+	u = params->width * params->height + params->width;
+	if ((content = (char*)malloc(sizeof(char) *	u)) == NULL)
 		return (NULL);
 	content[0] = '\0';
-	d = open(filename, O_RDONLY);
-	if (d == 1)
+	if(!(d = open(filename, O_RDONLY)))
 		return (NULL);
 	r = 1;
 	index = 0;

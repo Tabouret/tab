@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 22:41:42 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/19 22:44:22 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,6 @@ t_stats		*ft_get_param(char **argv, int i)
 	int			test;
 	t_stats		*stats;
 
-<<<<<<< HEAD
-=======
-=======
 	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
 		return (NULL);
 	stats->height = ft_atoi(param);
@@ -190,8 +187,6 @@ char	*ft_get_params(char **argv, int i)
 	int			test;
 	t_stats		*stats;
 
->>>>>>> FETCH_HEAD
->>>>>>> FETCH_HEAD
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
 		return (NULL);

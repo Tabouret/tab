@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_lines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 16:16:16 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 21:27:44 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/19 23:52:35 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
 
-char	*ft_read_line(char *str)
+char	*ft_read_grid_first_line(char *str)
 {
 	char	*reading;
 	int		i;

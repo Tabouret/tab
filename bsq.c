@@ -6,17 +6,14 @@
 /*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2014/08/19 18:38:02 by elacombe         ###   ########.fr       */
-=======
-/*   Updated: 2014/08/19 17:55:57 by elacombe         ###   ########.fr       */
->>>>>>> FETCH_HEAD
+/*   Updated: 2014/08/19 21:27:41 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
+#include <stdio.h>
 
-char	*ft_buffer(char **argv)
+char		*ft_buffer(char **argv)
 {
 	char	*buffer;
 	int		file;
@@ -30,7 +27,24 @@ char	*ft_buffer(char **argv)
 	return(buffer);
 }
 
-t_stats	*ft_read_files(char *filename)
+t_stats		*create_stats(char *param)
+{
+	t_stats	*stats;
+
+	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
+		return (NULL);
+	stats->height = ft_atoi(param);
+	while (*param >= '0' && *param <= '9')
+		param++;
+	stats->empty = *param;
+	param++;
+	stats->obstacle = *param;
+	param++;
+	stats->full = *param;
+	return (stats);
+}
+
+t_stats		*ft_read_files(char *filename)
 {
 	t_stats	*stats;
 	char 	*content;
@@ -39,7 +53,7 @@ t_stats	*ft_read_files(char *filename)
 	int		r;
 	char 	buff[BUFF_SIZE + 1];
 	printf("read config\n");
-	
+
 	stats = create_stats(filename);
 	if (!stats)
 		return (NULL);
@@ -71,29 +85,51 @@ t_stats	*ft_read_files(char *filename)
 	return (stats);
 }
 
-
-t_stats	*create_stats(char *param)
+int get_width(char *filename)
 {
-	t_stats	*stats;
+	int d;
+	int r;
+	int i;
+	int width;
+	char *string;
+	char *content;
+	char buffer[4096 + 1];
 
-	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
-		return (NULL);
-	stats->height = ft_atoi(param);
-	while (*param >= '0' && *param <= '9')
-		param++;
-	stats->empty = *param;
-	param++;
-	stats->obstacle = *param;
-	param++;
-	stats->full = *param;
-	return (stats);
+	d = open(filename, O_RDONLY);
+	if (d == -1)
+		return 0;
+	r = 1;
+	content = NULL;
+	while (r)
+	{
+		r = read(d, buffer, 4096);
+		if (r <= 0)
+			break ;
+		content = ft_strconcat(content, buffer);
+		string = ft_read_lines(content, 2);
+		if (string)
+			break ;
+	}
+	width = 0;
+	i = 0;
+	while (i < 2)
+	{
+		if(*string == '\n')
+		{
+			i++;
+			if (i < 2)
+				width = 0;
+			else
+				break;
+		}
+		string++;
+		width++;
+	}
+	close(d);
+	return (width - 1);
 }
-t_stats	*create_stats(char *param)
-{
-	t_stats	*stats;
 
-<<<<<<< HEAD
-t_stats	*get_stats(int i)
+t_stats		*get_stats(int i)
 {
 	char	*param;
 	char	buffer[BUFF_SIZE + 1];
@@ -107,83 +143,33 @@ t_stats	*get_stats(int i)
 		return (NULL);
 	stats = create_stats(param);
 	ft_putstr(param);
-	buffer = ft_read_lines(stats);
 	free(param);
 	return (stats);
 }
 
-char	*ft_get_params(char **argv, int i)
+t_stats		*ft_get_param(char **argv, int i)
 {
 	int			test;
 	t_stats		*stats;	
 
-=======
-	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
-		return (NULL);
-	stats->height = ft_atoi(param);
-	while (*param >= '0' && *param <= '9')
-		param++;
-	stats->empty = *param;
-	param++;
-	stats->obstacle = *param;
-	param++;
-	stats->full = *param;
-	return (stats);
-}
-
-t_stats	*get_stats(int i)
-{
-	char	*param;
-	char	buffer[BUFF_SIZE + 1];
-	int		test;
-	t_stats	*stats;
-
-	if (!(test = read(i, buffer, BUFF_SIZE)))
-		return (NULL);
-	if (!(param = ft_read_line(buffer)))
-		return (NULL);
-	stats = create_stats(param);
-	free(param);
-	return (stats);
-}
-
-char	*ft_get_params(char **argv, int i)
-{
-	int			test;
-	t_stats		*stats;	
-
->>>>>>> FETCH_HEAD
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
 		return (NULL);
 	stats = get_stats(test);
 	if (!(close(test)) || !stats)
 		return (NULL);
-<<<<<<< HEAD
-	ft_read_files(stats);
-=======
->>>>>>> FETCH_HEAD
-	return ("");
+	/*ft_read_files(stats);*/
+	return (stats);
 }
-char	*ft_what_input(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int	i;
 
 	i = 1;
-	if (argc > 1)
+	while (i <= argc)
 	{
-		while (argv[i])
-		{
-			ft_get_params(argv, i);
-			i++;
-		}
+		ft_get_param(argv, i);
+		i++;
 	}
-	else if (argc == 1)
-		ft_get_params(argv, i);
-	return ("");
-}
-int		main(int argc, char **argv)
-{
-	ft_what_input(argc, argv);
 	return (0);
 }

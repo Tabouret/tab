@@ -6,7 +6,7 @@
 /*   By: elacombe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 16:16:16 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 18:38:07 by elacombe         ###   ########.fr       */
+/*   Updated: 2014/08/19 21:27:44 by elacombe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,38 @@ char	*ft_read_line(char *str)
 	}
 	reading[i] = '\0';
 	return (reading);
+}
+
+char *ft_read_lines(char *str, int n)
+{
+	char *result;
+	int i;
+	int count;
+	int size;
+
+	i = 0;
+	count = 0;
+	while (count < n)
+	{
+		if(str[i] == '\0')
+		{
+			return (NULL);
+		}
+		if(str[i] == '\n')
+		{
+			count++;
+		}
+		i++;
+	}
+	if ((result = (char*)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	size = i;
+	i = 0;
+	while (i < size)
+	{
+		result[i] = str[i];
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }

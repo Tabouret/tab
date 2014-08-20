@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 18:14:30 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 19:18:13 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int				main(int argc, char *argv[])
 {
 	int i;
 
-	i =0;
+	i = 0;
 	while (++i <= argc)
 	{
+		ft_putstr("Pegasus 0\n");
 		ft_open_file(argv, i);
 	}
 	return 0;
@@ -31,15 +32,18 @@ t_params	*ft_struct(int call)
 
 	if (call == 1)
 	{
-		return (params);
 		params = (t_params *)malloc(sizeof(t_params));
+		ft_putstr("Unicorn 1\n");
+		return (params);
 	}
 	if (call == 2)
 	{
+		ft_putstr("Unicorn 2\n");
 		return (params);
 	}
 	if (call == 3)
 	{
+		ft_putstr("Unicorn 3\n");
 		free(params);
 		params = NULL;
 	}
@@ -56,14 +60,16 @@ char			*ft_open_file(char **argv, int i)
 	int			test;
 	t_params	*params;
 
-
+	ft_putstr("Manfred 1\n");
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
 		return (NULL);
 	params = ft_get_grid_param(test);
-	if (!(close(test)) || !params)
+	ft_putstr("Manfred 2\n");
+	if (close(test))
 		return (NULL);
 	ft_read_files(argv[i]);
+	ft_putstr("Manfred 3\n");
 	return (params->str);
 }
 
@@ -80,9 +86,9 @@ t_params		*ft_get_grid_param(int i)
 	buffer[BUFF_SIZE + 1] = '\0';
 	if (!(param = ft_read_grid_first_line(buffer)))
 		return (NULL);
-	params->width = ft_read_grid_second_line(buffer);
 	if (!(params = (t_params *)malloc(sizeof(t_params))))
 		return (NULL);
+	params->width = ft_read_grid_second_line(buffer);
 	params->height = ft_atoi(param);
 	while (*param >= '0' && *param <= '9')
 		param++;
@@ -91,41 +97,41 @@ t_params		*ft_get_grid_param(int i)
 	params->obstacle = *param;
 	param++;
 	params->full = *param;
-	free(param);
 	return (params);
 }
 
-t_params		*ft_read_files(char *filename)
+void		ft_read_files(char *filename)
 {
 	char		*content;
 	int			d;
 	int			index;
 	int			r;
 	int			u;
-	char		buff[BUFF_SIZE + 1];
+	char		*buff;
 	t_params	*olol;
 
+	ft_putstr("Poilu\n");
 	olol = ft_struct(2);
-	u = olol->width * olol->height + olol->width;
-	if ((content = (char*)malloc(sizeof(char) *	u)) == NULL)
-		return (NULL);
+	u = (olol->width * olol->height + olol->width);
+	content = (char*)malloc(sizeof(u + 1));
 	content[0] = '\0';
-	if(!(d = open(filename, O_RDONLY)))
-		return (NULL);
+	d = open(filename, O_RDONLY);
 	r = 1;
 	index = 0;
 	while (r)
 	{
+		buff = (char *)malloc(sizeof(BUFF_SIZE + 1));
 		r = read(d, buff, BUFF_SIZE);
 		buff[r] = '\0';
-		printf("read\n");
+		ft_putstr("read\n");
 		content = ft_strcat(content, buff, &index);
+		ft_putstr("read 2\n");
+		free(buff);
 	}
 	ft_putstr(content);
 	free(content);
 	free(olol->str);
 	free(olol);
-	return (olol);
 }
 
 char		*ft_read_grid_first_line(char *str)

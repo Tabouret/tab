@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 02:49:47 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 03:17:20 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int				main(int argc, char *argv[])
 	return 0;
 }
 
-t_params		ft_
+t_params		unicorn(int call)
+{
+	/*implement singleton here*/
+}
 
 void			ft_highway_to_segfaults(char **argv, int i)
 {

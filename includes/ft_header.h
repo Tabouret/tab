@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/20 02:48:05 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 15:59:28 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define		FT_HEADER_H
 # include		<unistd.h>
 # include		<stdlib.h>
+# include		<stdio.h>
 # include		<sys/types.h>
 # include		<sys/stat.h>
 # include		<fcntl.h>
@@ -26,7 +27,7 @@ typedef struct	s_params
 	char		obstacle;
 	char		empty;
 	char		full;
-	char		*params;
+	char		*str;
 }				t_params;
 
 void			ft_highway_to_segfaults(char **argv, int i);
@@ -37,6 +38,9 @@ char			*ft_read_grid_first_line(char *str);
 int				ft_read_grid_second_line(char *str);
 char			*ft_strcat(char *dest, char *src, int *index);
 int				ft_atoi(char *s1);
-
+t_params		*ft_struct(int call);
+void			ft_putstr(char *str);
+int				ft_strnlen(char *str, int offset);
+int				ft_strlen(char *str);
 
 #endif

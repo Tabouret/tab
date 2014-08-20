@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 03:17:20 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 18:14:30 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,41 @@ int				main(int argc, char *argv[])
 	i =0;
 	while (++i <= argc)
 	{
-		ft_highway_to_segfaults(argv, i);
+		ft_open_file(argv, i);
 	}
 	return 0;
 }
 
-t_params		unicorn(int call)
+t_params	*ft_struct(int call)
 {
-	/*implement singleton here*/
-}
+	static t_params *params;
 
+
+	if (call == 1)
+	{
+		return (params);
+		params = (t_params *)malloc(sizeof(t_params));
+	}
+	if (call == 2)
+	{
+		return (params);
+	}
+	if (call == 3)
+	{
+		free(params);
+		params = NULL;
+	}
+	return (params);
+}
+/*
 void			ft_highway_to_segfaults(char **argv, int i)
 {
 	ft_open_file(argv, i);
 }
-
+*/
 char			*ft_open_file(char **argv, int i)
 {
 	int			test;
-	char		*olol;
 	t_params	*params;
 
 
@@ -48,16 +64,17 @@ char			*ft_open_file(char **argv, int i)
 	if (!(close(test)) || !params)
 		return (NULL);
 	ft_read_files(argv[i]);
-	return (t_params->params);
+	return (params->str);
 }
 
 t_params		*ft_get_grid_param(int i)
 {
-	char	*param;
-	char	buffer[BUFF_SIZE + 1];
-	int		test;
+	char		*param;
+	char		buffer[BUFF_SIZE + 1];
+	int			test;
 	t_params	*params;
 
+	params = ft_struct(1);
 	if (!(test = read(i, buffer, BUFF_SIZE)))
 		return (NULL);
 	buffer[BUFF_SIZE + 1] = '\0';
@@ -80,14 +97,16 @@ t_params		*ft_get_grid_param(int i)
 
 t_params		*ft_read_files(char *filename)
 {
-	char 	*content;
-	int		d;
-	int		index;
-	int		r;
-	int		u;
-	char 	buff[BUFF_SIZE + 1];
+	char		*content;
+	int			d;
+	int			index;
+	int			r;
+	int			u;
+	char		buff[BUFF_SIZE + 1];
+	t_params	*olol;
 
-	u = params->width * params->height + params->width;
+	olol = ft_struct(2);
+	u = olol->width * olol->height + olol->width;
 	if ((content = (char*)malloc(sizeof(char) *	u)) == NULL)
 		return (NULL);
 	content[0] = '\0';
@@ -104,9 +123,9 @@ t_params		*ft_read_files(char *filename)
 	}
 	ft_putstr(content);
 	free(content);
-	free(params->tab);
-	free(params);
-	return (params);
+	free(olol->str);
+	free(olol);
+	return (olol);
 }
 
 char		*ft_read_grid_first_line(char *str)
@@ -114,13 +133,14 @@ char		*ft_read_grid_first_line(char *str)
 	char	*reading;
 	int		i;
 
+	i = 0;
 	while (str[i] != '\n')
 	{
 		if (str[i] == '\0')
 			return (NULL);
 		i++;
 	}
-	if (!(reading = (char *)malloc(i)))
+	if (!(reading = (char *)malloc(i + 1)))
 		return (NULL);
 	i = 0;
 	while (str[i] != '\n')
@@ -138,6 +158,8 @@ int			ft_read_grid_second_line(char *str)
 	int		i;
 	int		j;
 
+	i = 0;
+	j = 0;
 	while (str[i] != '\n')
 		i++;
 	while (str[j + i] != '\n')
@@ -145,7 +167,7 @@ int			ft_read_grid_second_line(char *str)
 	return (j);
 }
 
-char *ft_strcat(char *dest, char *src, int *index)
+char		*ft_strcat(char *dest, char *src, int *index)
 {
 	int dest_size;
 	int i;
@@ -163,7 +185,7 @@ char *ft_strcat(char *dest, char *src, int *index)
 	return (dest);
 }
 
-int		ft_atoi(char *s1)
+int			ft_atoi(char *s1)
 {
 	int i;
 	int nb;
@@ -177,3 +199,29 @@ int		ft_atoi(char *s1)
 	}
 	return (nb);
 }
+
+int		ft_strnlen(char *str, int offset)
+{
+	int size;
+
+	size = ft_strlen(str);
+	if (offset >= size)
+		return (0);
+	return (size - offset);
+}
+
+int		ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void		ft_putstr(char *str)
+{
+	write(1, str, ft_strlen(str));
+}
+

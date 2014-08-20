@@ -6,34 +6,35 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 01:44:57 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 02:26:22 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
 
-int			main(int argc, char const *argv[])
+int				main(int argc, char *argv[])
 {
 	int i;
-	char *tab;
 
 	i =0;
 	while (++i <= argc)
 	{
-		tab = ft_highway_to_segfaults(argv, i);
+		ft_highway_to_segfaults(argv, i);
 	}
 	return 0;
 }
 
-void		ft_highway_to_segfaults(char **argv, int i)
+void			ft_highway_to_segfaults(char **argv, int i)
 {
-	ft_open_file
+	ft_open_file(argv, i);
 }
 
 char		*ft_open_file(char **argv, int i)
 {
 	int			test;
-	t_params		*params;
+	char		*olol;
+	t_params	*params;
+
 
 	test = open(argv[i], O_RDONLY);
 	if (test == -1)
@@ -96,6 +97,7 @@ t_params		*ft_read_files(char *filename)
 		printf("read\n");
 		content = ft_strcat(content, buff, &index);
 	}
+	ft_putstr(content);
 	free(content);
 	free(params->tab);
 	free(params);
@@ -138,4 +140,35 @@ int			ft_read_grid_second_line(char *str)
 	return (j);
 }
 
+char *ft_strcat(char *dest, char *src, int *index)
+{
+	int dest_size;
+	int i;
 
+	dest_size = *index;
+	i = 0;
+	while (src [i] != '\0')
+	{
+		dest[dest_size] = src[i];
+		i++;
+		dest_size++;
+	}
+	dest[dest_size] = '\0';
+	*index = dest_size;
+	return (dest);
+}
+
+int		ft_atoi(char *s1)
+{
+	int i;
+	int nb;
+
+	i = 0;
+	nb = 0;
+	while (s1[i] && s1[i] <= '9' && s1[i] >= '0')
+	{
+		nb = (nb * 10) + (s1[i] - '0');
+		i++;
+	}
+	return (nb);
+}

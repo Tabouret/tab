@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:47:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/19 23:06:48 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/20 00:25:37 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,26 @@ char		*ft_buffer(char **argv)
 	return(buffer);
 }
 
-t_stats		*create_stats(char *param)
+t_params		*create_params(char *param)
 {
-	t_stats	*stats;
+	t_params	*params;
 
-	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
+	if (!(params = (t_params *)malloc(sizeof(t_params))))
 		return (NULL);
-	stats->height = ft_atoi(param);
+	params->height = ft_atoi(param);
 	while (*param >= '0' && *param <= '9')
 		param++;
-	stats->empty = *param;
+	params->empty = *param;
 	param++;
-	stats->obstacle = *param;
+	params->obstacle = *param;
 	param++;
-	stats->full = *param;
-	return (stats);
+	params->full = *param;
+	return (params);
 }
 
-t_stats		*ft_read_files(char *filename)
+t_params		*ft_read_files(char *filename)
 {
-	t_stats	*stats;
+	t_params	*params;
 	char 	*content;
 	int		d;
 	int		index;
@@ -55,13 +55,13 @@ t_stats		*ft_read_files(char *filename)
 	char 	buff[BUFF_SIZE + 1];
 	printf("read config\n");
 
-	stats = create_stats(filename);
-	if (!stats)
+	params = create_params(filename);
+	if (!params)
 		return (NULL);
 	printf("read width\n");
-	stats->width = get_width(filename);
+	params->width = get_width(filename);
 	printf("try to allocate full memory");
-	if ((content = (char*)malloc(sizeof(char) *	(stats->width * stats->height + stats->width))) == NULL)
+	if ((content = (char*)malloc(sizeof(char) *	(params->width * params->height + params->width))) == NULL)
 		return (NULL);
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
@@ -81,9 +81,9 @@ t_stats		*ft_read_files(char *filename)
 	printf( "parsed: \n\n%s\n", content);
 
 	free(content);
-	free(stats->tab);
-	free(stats);
-	return (stats);
+	free(params->tab);
+	free(params);
+	return (params);
 }
 
 int get_width(char *filename)
@@ -130,40 +130,41 @@ int get_width(char *filename)
 	return (width - 1);
 }
 
-t_stats		*get_stats(int i)
+t_params		*get_params(int i)
 {
 	char	*param;
 	char	buffer[BUFF_SIZE + 1];
 	int		test;
-	t_stats	*stats;
+	t_params	*params;
 
 	if (!(test = read(i, buffer, BUFF_SIZE)))
 		return (NULL);
 	buffer[BUFF_SIZE + 1] = '\0';
 	if (!(param = ft_read_line(buffer)))
 		return (NULL);
-	stats = create_stats(param);
+	params = create_params(param);
 	ft_putstr(param);
 	free(param);
-	return (stats);
+	return (params);
 }
 
-t_stats		*ft_get_param(char **argv, int i)
+t_params		*ft_get_param(char **argv, int i)
 {
 	int			test;
-	t_stats		*stats;
+	t_params		*params;
 
-	if (!(stats = (t_stats *)malloc(sizeof(t_stats))))
+	if (!(params = (t_params *)malloc(sizeof(t_params))))
 		return (NULL);
-	stats->height = ft_atoi(param);
+
+	params->height = ft_atoi(param);
 	while (*param >= '0' && *param <= '9')
 		param++;
-	stats->empty = *param;
+	params->empty = *param;
 	param++;
-	stats->obstacle = *param;
+	params->obstacle = *param;
 	param++;
-	stats->full = *param;
-	return (stats);
+	params->full = *param;
+	return (params);
 }
 
 int			main(int argc, char **argv)

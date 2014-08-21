@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 17:54:58 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 19:09:41 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void		ft_read_files(char *filename)
 	int			u;
 	char		buff[BUFF_SIZE + 1];
 
-	u = (ft_struct(2)->width * (ft_struct(2)->height + ft_struct(2)->width));
+	u = ((ft_struct(2)->width * ft_struct(2)->height) + ft_struct(2)->width + 1);
 	ft_putstr("Ultragroove\n");
 	content = (char*)malloc(sizeof(char) * (u + ft_struct(2)->width) + 1);
 	ft_putstr("Stegausaure 1\n");
@@ -106,8 +106,7 @@ void		ft_read_files(char *filename)
 	ft_putstr("Stegausaure 2\n");
 	while ((r = read(d, buff, BUFF_SIZE)) > 0)
 	{
-		ft_putstr("Stegausaure while\n");
-		buff[r] = '\0';
+		buff[r + 1] = '\0';
 		content = ft_strcat(content, buff);
 	}
 	ft_putstr("Narwhales Prime\n");
@@ -116,6 +115,7 @@ void		ft_read_files(char *filename)
 	ft_putstr("Narwhales 1\n");
 	ft_parse(ft_struct(2)->str);
 	ft_putstr("Narwhales 2\n");
+	ft_chiasse_a_cour();
 	free(content);
 	ft_putstr("Narwhales 3\n");
 
@@ -132,7 +132,7 @@ void		ft_fuck_first_line(char *str)
 	while (str[i] != '\n')
 		i++;
 	i++;
-	reading = (char *)malloc(sizeof(char) * ft_strlen(str) - i + 1);
+	reading = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
 	while (str[i] != '\0')
 	{
 		reading[j] = str[i];
@@ -159,10 +159,8 @@ void		ft_parse(char *str)
 	{
 		if (str[i] == ft_struct(2)->obstacle)
 			parstr[i] = 0;
-		ft_putstr("Pegasus 3\n");
 		if (str[i] == ft_struct(2)->empty)
 			parstr[i] = ft_jaylachiasse(parstr, i);
-		ft_putstr("Pegasus 4\n");
 		i++;
 	}
 	ft_putstr("Pegasus 5\n");
@@ -174,27 +172,22 @@ int			ft_jaylachiasse(int *parstr, int i)
 {
 	int		b;
 	int		c;
-	int		max;
-	int		pos;
 	int		min;
 
-	max = 0;
-	ft_putstr("Hippopotamidae Prime\n");
+	ft_struct(2)->max = 0;
 	if (parstr[0] == -10)
 	{
 		ft_struct(2)->strint = parstr;
 		ft_putstr("Hippopotamidae premier if chiant\n");
-		while (strint)
 	}
 	min = parstr[i + 1];
-	if (parstr[i] > max)
+	if (parstr[i] > ft_struct(2)->max)
 	{
-		max = parstr[i];
-		pos = i;
+		ft_struct(2)->max = parstr[i];
+		ft_struct(2)->pos = i;
 		ft_putstr("Hippopotamidae troisieme if chiant\n");
 	}
 	b = parstr[i + (ft_struct(2)->width) + 2];
-	ft_putstr("Hippopotamidae Second\n");
 	if (min > b)
 		min = b;
 	c = parstr[i + (ft_struct(2)->width) + 1];
@@ -203,7 +196,34 @@ int			ft_jaylachiasse(int *parstr, int i)
 	return (min);
 }
 
-int			*ft_courante(char *str)
+void		ft_chiasse_a_cour()
+{
+	int	i;
+	int j;
+	int max;
+	int pos;
+
+	j = 0;
+	i = 0;
+	max = ft_struct(2)->max;
+	pos = ft_struct(2)->pos;
+	ft_putstr(ft_struct(2)->str);
+	ft_putstr("mais mange donc de la merde fdp de valgrind\n");
+	while (i < max || j < max)
+	{
+		j = 0;
+		while (j < max)
+		{
+			ft_struct(2)->str[pos + i] = (ft_struct(2)->full);
+			j ++;
+		}
+		pos = pos + (ft_struct(2)->width);
+		i++;
+	}
+	ft_putstr(ft_struct(2)->str);
+}
+
+void		ft_courante(char *str)
 {
 	int	i;
 	int	u;
@@ -223,7 +243,8 @@ int			*ft_courante(char *str)
 		parstr[i - u] = ft_ai_je_la_chiasse(str, i - u);
 		i++;
 	}
-	return (parstr);
+	ft_struct(2)->strint = parstr;
+	free(parstr);
 }
 
 int			ft_ai_je_la_chiasse(char *str, int i)

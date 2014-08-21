@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 02:26:16 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 11:47:12 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			ft_get_grid_param(int i)
 	{
 		ft_struct(2)->error = 1;
 	}
-	ft_putstr("grid lol\n");
+	ft_putstr("xXx_naruto_Mickael le dark BG_shinobi_xXx\n");
 
 	ft_struct(2)->width = ft_read_grid_second_line(buffer);
 	ft_struct(2)->height = ft_atoi(param);
@@ -103,30 +103,25 @@ void		ft_read_files(char *filename)
 	int			d;
 	int			r;
 	int			u;
-	char		*buff;
+	char		buff[BUFF_SIZE + 1];
 
 	ft_putstr("Poilu\n");
-	u = (ft_struct(2)->width * ft_struct(2)->height + ft_struct(2)->width);
-	content = (char*)malloc(sizeof(u + 1));
+	u = (ft_struct(2)->width * (ft_struct(2)->height + ft_struct(2)->width));
+	content = (char*)malloc(sizeof(u + ft_struct(2)->width));
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
-	r = 1;
-	buff = (char *)malloc(sizeof(BUFF_SIZE + 1));
-	while (r)
+	while ((r = read(d, buff, BUFF_SIZE)) > 0)
 	{
-		r = read(d, buff, BUFF_SIZE);
 		buff[r] = '\0';
 		ft_putstr("read\n");
-		printf("%d\n", ft_strlen(content));
+		printf("%d____salut_moi_c'est content\n", ft_strlen(content));
 		printf("%d\n", ft_strlen(buff));
 		printf("%d\n", u);
 		content = ft_strcat(content, buff);
-		ft_putstr("read 2\n");
+		printf("read 2\n");
 	}
-	free(buff);
 	ft_putstr(content);
 	free(content);
-	free(ft_struct(2)->str);
 }
 
 char		*ft_read_grid_first_line(char *str)
@@ -186,7 +181,7 @@ char		*ft_strcat(char *dest, char *src)
 	}
 	dest[dest_size] = '\0';
 	ft_struct(2)->index_panda = dest_size;
-	printf("fjkfghgiofghgiudslfbgjkfldghjgflg;fjhfd;lggkjhdfjkbfdljkgdfklgfdhjkdfklgfjhlg");
+	printf("Les licornes pratiquent la sodomie\n");
 	return (dest);
 }
 

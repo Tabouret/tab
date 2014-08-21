@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:18:58 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 22:22:14 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void		ft_open_file(char **argv, int i)
 	test = open(argv[i], O_RDONLY);
 	ft_get_grid_param(test);
 	ft_read_files(argv[i]);
-
 }
 
 void		ft_get_grid_param(int i)
@@ -144,7 +143,6 @@ int		ft_check_empty (char **tab, int tab_check[], char empty)
 
 	x = -1;
 	y = -1;
-
 	while (++x <= tab_check[2])
 	{
 		while (++y <= tab_check[2])
@@ -201,9 +199,8 @@ void		ft_sauce_septique(void)
 		i--;
 		ft_putstr("diplosodomus 2\n");
 	}
-
-
 }
+
 int			ft_jaylachiasse(int i)
 {
 	int		b;
@@ -382,7 +379,6 @@ char		*ft_strcat(char *dest, char *src)
 	i = 0;
 	while (src [i] != '\0')
 	{
-
 		dest[dest_size - 1] = src[i - 1];
 		i++;
 		dest_size++;

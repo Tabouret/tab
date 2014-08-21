@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/21 22:49:01 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:50:09 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 22:56:42 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int			ft_read_grid_second_line(char *str)
 {
-
 	int		i;
 	int		j;
 
@@ -78,14 +77,4 @@ int			ft_strlen(char *str)
 	while (str[i])
 		i++;
 	return (i);
-}
-
-void		ft_putstr(char *str)
-{
-	write(1, str, ft_strlen(str));
-}
-
-void		ft_putchar(char c)
-{
-	write(1, &c, 1);
 }

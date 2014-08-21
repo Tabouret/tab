@@ -6,12 +6,11 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/21 22:48:10 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:49:21 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 22:57:16 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
-
 
 void		ft_chiasse_a_cour(void)
 {
@@ -34,28 +33,6 @@ void		ft_chiasse_a_cour(void)
 		}
 		pos = pos + (ft_struct(2)->width);
 		i++;
-	}
-}
-
-void		ft_putnbr(int x)
-{
-	int i;
-	int j;
-
-	i = x;
-	j = 1;
-	if (x < 0)
-	{
-		ft_putchar('-');
-		i = -x;
-	}
-	while (j <= i)
-		j *= 10;
-	j = j / 10;
-	while (j)
-	{
-		ft_putchar((i / j) % 10 + '0');
-		j /= 10;
 	}
 }
 

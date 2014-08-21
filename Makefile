@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: elacombe <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pollier <pollier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/08/18 15:39:46 by elacombe          #+#    #+#              #
-#    Updated: 2014/08/18 15:45:03 by elacombe         ###   ########.fr        #
+#    Updated: 2014/08/21 23:00:14 by pollier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ HEADERS = ./includes
 
 NAME = bsq
 
-SRC = bsq.c fonctions.c put.c
+SRC = bsqplusplus.c trucs.c trucs2.c trucs3.c
 
-OBJ = bsq.o fonctions.o put.o
+OBJ = bsqplusplus.o trucs.o trucs2.o trucs3.o
 
 all: $(NAME)
 

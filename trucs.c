@@ -6,13 +6,13 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/21 22:46:57 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:52:02 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 23:15:33 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_header.h"
+#include "ft_header.h"
 
-void		ft_fuck_first_line(char *str)
+void		ft_rm_first_line(char *str)
 {
 	char	*reading;
 	int		i;
@@ -58,11 +58,10 @@ int			ft_check_empty (char **tab, int tab_check[], char empty)
 void		ft_parse(char *str)
 {
 	int		i;
-	int		ubloop[0];
 
 	i = 0;
 	ft_struct(2)->strint = malloc(sizeof(int) * ft_strlen(ft_struct(2)->str));
-	ft_courante();
+	ft_setup_grid_to_parse();
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -70,15 +69,14 @@ void		ft_parse(char *str)
 		if (str[i] == ft_struct(2)->obstacle)
 			ft_struct(2)->strint[i] = 0;
 		if (str[i] == ft_struct(2)->empty)
-			ft_struct(2)->strint[i] = ft_jaylachiasse(i);
+			ft_struct(2)->strint[i] = ft_get_max_min_pos(i);
 		i++;
 	}
-	ubloop[0] = -10;
-	ft_jaylachiasse(-1);
-	ft_sauce_septique();
+	ft_get_max_min_pos(-1);
+	ft_fill_rest_of_grid();
 }
 
-void		ft_sauce_septique(void)
+void		ft_fill_rest_of_grid(void)
 {
 	int i;
 	int j;
@@ -92,12 +90,12 @@ void		ft_sauce_septique(void)
 		if (ft_struct(2)->str[i] == ft_struct(2)->obstacle)
 			ft_struct(2)->strint[i] = 0;
 		if (ft_struct(2)->str[i] == ft_struct(2)->empty)
-			ft_struct(2)->strint[i] = ft_jaylachiasse(i);
+			ft_struct(2)->strint[i] = ft_get_max_min_pos(i);
 		i--;
 	}
 }
 
-int			ft_jaylachiasse(int i)
+int			ft_get_max_min_pos(int i)
 {
 	int		b;
 	int		c;

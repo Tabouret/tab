@@ -6,13 +6,13 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/21 22:48:10 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:57:16 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 23:15:32 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_header.h"
+#include "ft_header.h"
 
-void		ft_chiasse_a_cour(void)
+void		ft_fill_grid_soluce(void)
 {
 	int	i;
 	int j;
@@ -36,7 +36,7 @@ void		ft_chiasse_a_cour(void)
 	}
 }
 
-void		ft_courante(void)
+void		ft_setup_grid_to_parse(void)
 {
 	int	i;
 	int	u;
@@ -46,18 +46,18 @@ void		ft_courante(void)
 	while (ft_struct(2)->str[i])
 	{
 		if (ft_struct(2)->str[i + 1] == '\n')
-			ft_ai_je_la_chiasse(i);
+			ft_fill_grid_base(i);
 		i++;
 	}
 	i = i - u;
 	while ((ft_struct(2)->str[i]))
 	{
-		ft_ai_je_la_chiasse(i);
+		ft_fill_grid_base(i);
 		i++;
 	}
 }
 
-void		ft_ai_je_la_chiasse(int i)
+void		ft_fill_grid_base(int i)
 {
 	if (ft_struct(2)->str[i] == (ft_struct(2)->empty))
 	{

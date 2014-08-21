@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/21 22:58:46 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 23:16:57 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int				ft_atoi(char *s1);
 t_params		*ft_struct(int call);
 int				ft_strnlen(char *str, int offset);
 int				ft_strlen(char *str);
-void			ft_fuck_first_line(char *str);
+void			ft_rm_first_line(char *str);
 void			ft_parse(char *str);
-int				ft_jaylachiasse(int i);
-void			ft_courante(void);
-void			ft_ai_je_la_chiasse(int i);
-void			ft_chiasse_a_cour();
-void			ft_sauce_septique(void);
+int				ft_get_max_min_pos(int i);
+void			ft_setup_grid_to_parse(void);
+void			ft_fill_grid_base(int i);
+void			ft_fill_grid_soluce(void);
+void			ft_fill_rest_of_grid(void);
 
 #endif

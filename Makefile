@@ -6,15 +6,13 @@
 #    By: pollier <pollier@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/08/18 15:39:46 by elacombe          #+#    #+#              #
-#    Updated: 2014/08/21 23:00:14 by pollier          ###   ########.fr        #
+#    Updated: 2014/08/21 23:14:55 by pollier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAG = -Wall -Werror -Wextra -I$(HEADERS)
-
-HEADERS = ./includes
+CFLAG = -Wall -Werror -Wextra -I./includes
 
 NAME = bsq
 
@@ -32,6 +30,6 @@ clean:
 	rm -f $(OBJ)
 
 fclean: clean
-	rf -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean $(NAME)

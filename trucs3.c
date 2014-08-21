@@ -6,11 +6,11 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/21 22:49:01 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:56:42 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 23:15:32 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_header.h"
+#include "ft_header.h"
 
 int			ft_read_grid_second_line(char *str)
 {

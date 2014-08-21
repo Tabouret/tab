@@ -6,11 +6,11 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 22:47:26 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 23:15:31 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft_header.h"
+#include "ft_header.h"
 
 int			main(int argc, char *argv[])
 {
@@ -92,8 +92,8 @@ void		ft_read_files(char *filename)
 	int			e;
 	char		buff[BUFF_SIZE + 1];
 
-	e = ft_struct(2)->height) + ft_struct(2)->width + 1;
-	u = ((ft_struct(2)->width * e);
+	e = ft_struct(2)->height + ft_struct(2)->width + 1;
+	u = ft_struct(2)->width * e;
 	content = (char*)malloc(sizeof(char) * (u + ft_struct(2)->width) + 1);
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
@@ -103,7 +103,7 @@ void		ft_read_files(char *filename)
 		content = ft_strcat(content, buff);
 	}
 	content[u + 1] = '\0';
-	ft_fuck_first_line(content);
+	ft_rm_first_line(content);
 	ft_parse(ft_struct(2)->str);
-	ft_chiasse_a_cour();
+	ft_fill_grid_soluce();
 }

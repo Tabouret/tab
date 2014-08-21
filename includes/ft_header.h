@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/21 19:01:24 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 20:23:08 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include		<sys/types.h>
 # include		<sys/stat.h>
 # include		<fcntl.h>
-# define		BUFF_SIZE	524288
+# define		BUFF_SIZE	5242880
 
 typedef struct	s_params
 {
@@ -53,5 +53,7 @@ int				ft_jaylachiasse(int *parstr, int i);
 void			ft_courante(char *str);
 int				ft_ai_je_la_chiasse(char *str, int i);
 void			ft_chiasse_a_cour();
+void			ft_putnbr(int x);
+void			ft_putchar(char c);
 
 #endif

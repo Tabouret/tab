@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 19:09:41 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 20:26:12 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int			main(int argc, char *argv[])
 	i = 0;
 	while (++i < argc)
 	{
-		ft_putstr("Pegasus 0\n");
 		ft_open_file(argv, i);
 		ft_struct(3);
 	}
@@ -57,9 +56,7 @@ void		ft_open_file(char **argv, int i)
 
 	test = open(argv[i], O_RDONLY);
 	ft_get_grid_param(test);
-	ft_putstr("before ft_read_files\n");
 	ft_read_files(argv[i]);
-	ft_putstr("After ft_read_files\n");
 
 }
 
@@ -98,12 +95,9 @@ void		ft_read_files(char *filename)
 	char		buff[BUFF_SIZE + 1];
 
 	u = ((ft_struct(2)->width * ft_struct(2)->height) + ft_struct(2)->width + 1);
-	ft_putstr("Ultragroove\n");
 	content = (char*)malloc(sizeof(char) * (u + ft_struct(2)->width) + 1);
-	ft_putstr("Stegausaure 1\n");
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
-	ft_putstr("Stegausaure 2\n");
 	while ((r = read(d, buff, BUFF_SIZE)) > 0)
 	{
 		buff[r + 1] = '\0';
@@ -116,7 +110,6 @@ void		ft_read_files(char *filename)
 	ft_parse(ft_struct(2)->str);
 	ft_putstr("Narwhales 2\n");
 	ft_chiasse_a_cour();
-	free(content);
 	ft_putstr("Narwhales 3\n");
 
 }
@@ -151,22 +144,21 @@ void		ft_parse(char *str)
 	int		ubloop[0];
 
 	i = 0;
-	ft_putstr("Pegasus 1\n");
 	parstr = (int*)malloc(sizeof(int) * ft_strlen(str));
-	ft_putstr("Pegasus 2\n");
 	ft_courante(ft_struct(2)->str);
 	while (str[i])
 	{
+		if (str[i] == '\n')
+			i++;
 		if (str[i] == ft_struct(2)->obstacle)
 			parstr[i] = 0;
 		if (str[i] == ft_struct(2)->empty)
 			parstr[i] = ft_jaylachiasse(parstr, i);
 		i++;
 	}
-	ft_putstr("Pegasus 5\n");
+	ft_putstr("Pegasus Prime\n");
 	ubloop[0] = -10;
 	ft_jaylachiasse(ubloop , 1);
-	free(parstr);
 }
 int			ft_jaylachiasse(int *parstr, int i)
 {
@@ -181,6 +173,8 @@ int			ft_jaylachiasse(int *parstr, int i)
 		ft_putstr("Hippopotamidae premier if chiant\n");
 	}
 	min = parstr[i + 1];
+	ft_putnbr(parstr[i]);
+	//ft_putnbr(ft_struct(2)->max);
 	if (parstr[i] > ft_struct(2)->max)
 	{
 		ft_struct(2)->max = parstr[i];
@@ -193,6 +187,8 @@ int			ft_jaylachiasse(int *parstr, int i)
 	c = parstr[i + (ft_struct(2)->width) + 1];
 	if (min > c)
 		min = c;
+	ft_putnbr(min);
+	ft_putchar('\n');
 	return (min);
 }
 
@@ -207,20 +203,45 @@ void		ft_chiasse_a_cour()
 	i = 0;
 	max = ft_struct(2)->max;
 	pos = ft_struct(2)->pos;
+	ft_putnbr(max);
+	ft_putstr("<--- je suis max\n");
+	ft_putnbr(pos);
+	ft_putstr("<--- je suis pos\n");
 	ft_putstr(ft_struct(2)->str);
-	ft_putstr("mais mange donc de la merde fdp de valgrind\n");
+	ft_putstr("olol poney \n");
 	while (i < max || j < max)
 	{
 		j = 0;
 		while (j < max)
 		{
-			ft_struct(2)->str[pos + i] = (ft_struct(2)->full);
+			ft_struct(2)->str[pos + j] = (ft_struct(2)->full);
 			j ++;
 		}
 		pos = pos + (ft_struct(2)->width);
 		i++;
 	}
-	ft_putstr(ft_struct(2)->str);
+}
+
+void		ft_putnbr(int x)
+{
+	int i;
+	int j;
+
+	i = x;
+	j = 1;
+	if (x < 0)
+	{
+		ft_putchar('-');
+		i = -x;
+	}
+	while (j <= i)
+		j *= 10;
+	j = j / 10;
+	while (j)
+	{
+		ft_putchar((i / j) % 10 + '0');
+		j /= 10;
+	}
 }
 
 void		ft_courante(char *str)
@@ -244,13 +265,12 @@ void		ft_courante(char *str)
 		i++;
 	}
 	ft_struct(2)->strint = parstr;
-	free(parstr);
 }
 
 int			ft_ai_je_la_chiasse(char *str, int i)
 {
 	if (str[i] == (ft_struct(2)->empty))
-		return ('1');
+		return (1);
 	return (0);
 }
 
@@ -288,10 +308,8 @@ int			ft_read_grid_second_line(char *str)
 	j = 1;
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
-	printf("%d____salut_moi_I\n", i);
 	while (str[j + i] != '\n' && str[j + i] != '\0')
 		j++;
-	printf("%d____salut_moi_J\n", j);
 	return (j - 1);
 }
 
@@ -352,4 +370,9 @@ int			ft_strlen(char *str)
 void		ft_putstr(char *str)
 {
 	write(1, str, ft_strlen(str));
+}
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
 }

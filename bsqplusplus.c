@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/20 19:18:13 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 02:26:16 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,22 @@ t_params	*ft_struct(int call)
 {
 	static t_params *params;
 
-
-	if (call == 1)
+	if (!(params))
 	{
-		params = (t_params *)malloc(sizeof(t_params));
-		ft_putstr("Unicorn 1\n");
-		return (params);
+	params = (t_params *)malloc(sizeof(t_params));
+	params->error = 0;
+	params->index_panda = 0;
+	ft_putstr("Init struct\n");
+	return (params);
 	}
 	if (call == 2)
 	{
-		ft_putstr("Unicorn 2\n");
+		ft_putstr("Acces struct\n");
 		return (params);
 	}
 	if (call == 3)
 	{
-		ft_putstr("Unicorn 3\n");
+		ft_putstr("Free struct\n");
 		free(params);
 		params = NULL;
 	}
@@ -58,80 +59,74 @@ void			ft_highway_to_segfaults(char **argv, int i)
 char			*ft_open_file(char **argv, int i)
 {
 	int			test;
-	t_params	*params;
 
 	ft_putstr("Manfred 1\n");
 	test = open(argv[i], O_RDONLY);
-	if (test == -1)
-		return (NULL);
-	params = ft_get_grid_param(test);
+	ft_get_grid_param(test);
 	ft_putstr("Manfred 2\n");
-	if (close(test))
-		return (NULL);
 	ft_read_files(argv[i]);
 	ft_putstr("Manfred 3\n");
-	return (params->str);
+	return (ft_struct(2)->str);
 }
 
-t_params		*ft_get_grid_param(int i)
+void			ft_get_grid_param(int i)
 {
 	char		*param;
 	char		buffer[BUFF_SIZE + 1];
 	int			test;
-	t_params	*params;
 
-	params = ft_struct(1);
 	if (!(test = read(i, buffer, BUFF_SIZE)))
-		return (NULL);
+	{
+		ft_struct(2)->error = 1;
+	}
 	buffer[BUFF_SIZE + 1] = '\0';
 	if (!(param = ft_read_grid_first_line(buffer)))
-		return (NULL);
-	if (!(params = (t_params *)malloc(sizeof(t_params))))
-		return (NULL);
-	params->width = ft_read_grid_second_line(buffer);
-	params->height = ft_atoi(param);
+	{
+		ft_struct(2)->error = 1;
+	}
+	ft_putstr("grid lol\n");
+
+	ft_struct(2)->width = ft_read_grid_second_line(buffer);
+	ft_struct(2)->height = ft_atoi(param);
 	while (*param >= '0' && *param <= '9')
 		param++;
-	params->empty = *param;
+	ft_struct(2)->empty = *param;
 	param++;
-	params->obstacle = *param;
+	ft_struct(2)->obstacle = *param;
 	param++;
-	params->full = *param;
-	return (params);
+	ft_struct(2)->full = *param;
 }
 
 void		ft_read_files(char *filename)
 {
 	char		*content;
 	int			d;
-	int			index;
 	int			r;
 	int			u;
 	char		*buff;
-	t_params	*olol;
 
 	ft_putstr("Poilu\n");
-	olol = ft_struct(2);
-	u = (olol->width * olol->height + olol->width);
+	u = (ft_struct(2)->width * ft_struct(2)->height + ft_struct(2)->width);
 	content = (char*)malloc(sizeof(u + 1));
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
 	r = 1;
-	index = 0;
+	buff = (char *)malloc(sizeof(BUFF_SIZE + 1));
 	while (r)
 	{
-		buff = (char *)malloc(sizeof(BUFF_SIZE + 1));
 		r = read(d, buff, BUFF_SIZE);
 		buff[r] = '\0';
 		ft_putstr("read\n");
-		content = ft_strcat(content, buff, &index);
+		printf("%d\n", ft_strlen(content));
+		printf("%d\n", ft_strlen(buff));
+		printf("%d\n", u);
+		content = ft_strcat(content, buff);
 		ft_putstr("read 2\n");
-		free(buff);
 	}
+	free(buff);
 	ft_putstr(content);
 	free(content);
-	free(olol->str);
-	free(olol);
+	free(ft_struct(2)->str);
 }
 
 char		*ft_read_grid_first_line(char *str)
@@ -165,29 +160,33 @@ int			ft_read_grid_second_line(char *str)
 	int		j;
 
 	i = 0;
-	j = 0;
-	while (str[i] != '\n')
+	j = 1;
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
-	while (str[j + i] != '\n')
+	printf("%d\n", i);
+	while (str[j + i] != '\n' && str[j + i] != '\0')
 		j++;
-	return (j);
+	printf("%d\n", j);
+	return (j - 1);
 }
 
-char		*ft_strcat(char *dest, char *src, int *index)
+char		*ft_strcat(char *dest, char *src)
 {
 	int dest_size;
 	int i;
 
-	dest_size = *index;
+	dest_size = ft_struct(2)->index_panda;
 	i = 0;
 	while (src [i] != '\0')
 	{
+
 		dest[dest_size] = src[i];
 		i++;
 		dest_size++;
 	}
 	dest[dest_size] = '\0';
-	*index = dest_size;
+	ft_struct(2)->index_panda = dest_size;
+	printf("fjkfghgiofghgiudslfbgjkfldghjgflg;fjhfd;lggkjhdfjkbfdljkgdfklgfdhjkdfklgfjhlg");
 	return (dest);
 }
 

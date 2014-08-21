@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 11:47:12 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 12:54:55 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@ int				main(int argc, char *argv[])
 	int i;
 
 	i = 0;
-	while (++i <= argc)
+	while (++i < argc)
 	{
 		ft_putstr("Pegasus 0\n");
 		ft_open_file(argv, i);
+		ft_struct(3);
 	}
 	return 0;
 }
@@ -56,7 +57,7 @@ void			ft_highway_to_segfaults(char **argv, int i)
 	ft_open_file(argv, i);
 }
 */
-char			*ft_open_file(char **argv, int i)
+void			ft_open_file(char **argv, int i)
 {
 	int			test;
 
@@ -66,7 +67,6 @@ char			*ft_open_file(char **argv, int i)
 	ft_putstr("Manfred 2\n");
 	ft_read_files(argv[i]);
 	ft_putstr("Manfred 3\n");
-	return (ft_struct(2)->str);
 }
 
 void			ft_get_grid_param(int i)
@@ -115,14 +115,70 @@ void		ft_read_files(char *filename)
 		buff[r] = '\0';
 		ft_putstr("read\n");
 		printf("%d____salut_moi_c'est content\n", ft_strlen(content));
-		printf("%d\n", ft_strlen(buff));
-		printf("%d\n", u);
+		printf("%d_moi c'est buffer\n", ft_strlen(buff));
+		printf("%d_moi c'est U\n", u);
 		content = ft_strcat(content, buff);
 		printf("read 2\n");
 	}
 	ft_putstr(content);
+	ft_fuck_first_line(content);
 	free(content);
+	ft_putstr(ft_struct(2)->str);
 }
+
+void		ft_fuck_first_line(char *str)
+{
+	char	*reading;
+	int		i;
+
+	i = 0;
+	while (str[i] != '\n')
+		i++;
+	i++;
+	reading = (char *)malloc(sizeof(ft_strlen(str) - i + 1));
+	while (str[i] != '\0')
+	{
+		reading[i] = str[i];
+		i++;
+	}
+	reading[i] = '\0';
+	ft_putstr("MANNY DERRIERE TOI !!!\n");
+	ft_struct(2)->str = reading;
+	printf("%s", reading);
+	ft_putstr("MANNY DERRIERE TOI !!! SERIEUX\n");
+}
+
+/*void		ft_gps(void)
+{
+	int w_width;
+	int w_height;
+
+	w_width = ft_struct(2)->width;
+	w_height = ft_struct(2)->height;
+
+}*/
+
+int		ft_check_empty (char **tab, int tab_check[], char empty)
+{
+	int x;
+	int y;
+
+	x = -1;
+	y = -1;
+
+	while (++x <= tab_check[2])
+	{
+		while (++y <= tab_check[2])
+		{
+			if (tab[x + tab_check[0]][y + tab_check[1]] != empty)
+			{
+				return (0);
+			}
+		}
+	}
+	return (1);
+}
+
 
 char		*ft_read_grid_first_line(char *str)
 {
@@ -158,10 +214,10 @@ int			ft_read_grid_second_line(char *str)
 	j = 1;
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
-	printf("%d\n", i);
+	printf("%d____salut_moi_I\n", i);
 	while (str[j + i] != '\n' && str[j + i] != '\0')
 		j++;
-	printf("%d\n", j);
+	printf("%d____salut_moi_J\n", j);
 	return (j - 1);
 }
 
@@ -175,7 +231,7 @@ char		*ft_strcat(char *dest, char *src)
 	while (src [i] != '\0')
 	{
 
-		dest[dest_size] = src[i];
+		dest[dest_size - 1] = src[i - 1];
 		i++;
 		dest_size++;
 	}

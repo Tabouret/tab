@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/21 11:43:13 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 12:49:47 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include		<sys/types.h>
 # include		<sys/stat.h>
 # include		<fcntl.h>
-# define		BUFF_SIZE	4096
+# define		BUFF_SIZE	524288
 
 typedef struct	s_params
 {
@@ -33,7 +33,7 @@ typedef struct	s_params
 }				t_params;
 
 //void			ft_highway_to_segfaults(char **argv, int i);
-char			*ft_open_file(char **argv, int i);
+void			ft_open_file(char **argv, int i);
 void			ft_get_grid_param(int i);
 void			ft_read_files(char *filename);
 char			*ft_read_grid_first_line(char *str);
@@ -44,5 +44,6 @@ t_params		*ft_struct(int call);
 void			ft_putstr(char *str);
 int				ft_strnlen(char *str, int offset);
 int				ft_strlen(char *str);
+void			ft_fuck_first_line(char *str);
 
 #endif

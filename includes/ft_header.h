@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/21 20:23:08 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 22:17:53 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include		<sys/types.h>
 # include		<sys/stat.h>
 # include		<fcntl.h>
-# define		BUFF_SIZE	5242880
+# define		BUFF_SIZE	4096
 
 typedef struct	s_params
 {
@@ -49,11 +49,12 @@ int				ft_strnlen(char *str, int offset);
 int				ft_strlen(char *str);
 void			ft_fuck_first_line(char *str);
 void			ft_parse(char *str);
-int				ft_jaylachiasse(int *parstr, int i);
-void			ft_courante(char *str);
-int				ft_ai_je_la_chiasse(char *str, int i);
+int				ft_jaylachiasse(int i);
+void			ft_courante(void);
+void			ft_ai_je_la_chiasse(int i);
 void			ft_chiasse_a_cour();
 void			ft_putnbr(int x);
 void			ft_putchar(char c);
+void			ft_sauce_septique(void);
 
 #endif

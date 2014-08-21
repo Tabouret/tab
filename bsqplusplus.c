@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 20:50:10 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 22:18:58 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_params	*ft_struct(int call)
 	}
 	if (call == 2)
 	{
+		ft_putstr("OMG\n");
 		return (params);
 	}
 	if (call == 3)
@@ -111,7 +112,6 @@ void		ft_read_files(char *filename)
 	ft_putstr("Narwhales 2\n");
 	ft_chiasse_a_cour();
 	ft_putstr("Narwhales 3\n");
-
 }
 
 void		ft_fuck_first_line(char *str)
@@ -137,62 +137,104 @@ void		ft_fuck_first_line(char *str)
 	ft_struct(2)->str = reading;
 }
 
+int		ft_check_empty (char **tab, int tab_check[], char empty)
+{
+	int x;
+	int y;
+
+	x = -1;
+	y = -1;
+
+	while (++x <= tab_check[2])
+	{
+		while (++y <= tab_check[2])
+		{
+			if (tab[x + tab_check[0]][y + tab_check[1]] != empty)
+			{
+				return (0);
+			}
+		}
+	}
+	return (1);
+}
+
 void		ft_parse(char *str)
 {
-	int		*parstr;
 	int		i;
 	int		ubloop[0];
 
 	i = 0;
-	parstr = (int*)malloc(sizeof(int) * ft_strlen(str));
-	ft_courante(ft_struct(2)->str);
+	ft_struct(2)->strint = malloc(sizeof(int) * ft_strlen(ft_struct(2)->str));
+	ft_putstr("diplodocus Prime\n");
+	ft_courante();
+	ft_putstr("diplodocus 1\n");
 	while (str[i])
 	{
 		if (str[i] == '\n')
 			i++;
 		if (str[i] == ft_struct(2)->obstacle)
-			parstr[i] = 0;
+			ft_struct(2)->strint[i] = 0;
 		if (str[i] == ft_struct(2)->empty)
-			parstr[i] = ft_jaylachiasse(parstr, i);
+			ft_struct(2)->strint[i] = ft_jaylachiasse(i);
 		i++;
+		ft_putstr("diplodocus 2\n");
 	}
 	ft_putstr("Pegasus Prime\n");
 	ubloop[0] = -10;
-	ft_jaylachiasse(ubloop , 1);
+	ft_jaylachiasse(-1);
+	ft_sauce_septique();
 }
-int			ft_jaylachiasse(int *parstr, int i)
+
+void		ft_sauce_septique(void)
+{
+	int i;
+
+	i = (ft_struct(2)->height) * (ft_struct(2)->width) - (ft_struct(2)->width) - 2;
+	while (ft_struct(2)->str[i])
+	{
+		if (ft_struct(2)->strint[i - 1] == '\n')
+			i--;
+		if (ft_struct(2)->str[i] == ft_struct(2)->obstacle)
+			ft_struct(2)->strint[i] = 0;
+		if (ft_struct(2)->str[i] == ft_struct(2)->empty)
+			ft_struct(2)->strint[i] = ft_jaylachiasse(i);
+		i--;
+		ft_putstr("diplosodomus 2\n");
+	}
+
+
+}
+int			ft_jaylachiasse(int i)
 {
 	int		b;
 	int		c;
 	int		min;
 
 	ft_struct(2)->max = 0;
-	if (parstr[0] == -10)
+	ft_putnbr(ft_struct(2)->max);
+	ft_putstr("<-- je suis max avant le premier hippopotame\n");
+	min = ft_struct(2)->strint[i + 1];
+	ft_putnbr(ft_struct(2)->strint[i]);
+	ft_putnbr(ft_struct(2)->max);
+	ft_putstr("<-- je suis max apres le premier hippopotame\n");
+	if (ft_struct(2)->strint[i] > ft_struct(2)->max)
 	{
-		ft_struct(2)->strint = parstr;
-		ft_putstr("Hippopotamidae premier if chiant\n");
-	}
-	min = parstr[i + 1];
-	ft_putnbr(parstr[i]);
-	//ft_putnbr(ft_struct(2)->max);
-	if (parstr[i] > ft_struct(2)->max)
-	{
-		ft_struct(2)->max = parstr[i];
+		ft_struct(2)->max = ft_struct(2)->strint[i];
 		ft_struct(2)->pos = i;
 		ft_putstr("Hippopotamidae troisieme if chiant\n");
 	}
-	b = parstr[i + (ft_struct(2)->width) + 2];
+	b = ft_struct(2)->strint[i + (ft_struct(2)->width) + 2];
 	if (min > b)
 		min = b;
-	c = parstr[i + (ft_struct(2)->width) + 1];
+	c = ft_struct(2)->strint[i + (ft_struct(2)->width) + 1];
 	if (min > c)
 		min = c;
 	ft_putnbr(min);
-	ft_putchar('\n');
+	ft_putstr("<--- je suis min\n");
 	return (min);
 }
 
-void		ft_chiasse_a_cour()
+void		ft_chiasse_a_cour(void)
 {
 	int	i;
 	int j;
@@ -214,12 +256,13 @@ void		ft_chiasse_a_cour()
 		j = 0;
 		while (j < max)
 		{
-			ft_struct(2)->str[pos + j] = (ft_struct(2)->full);
-			j ++;
+			(ft_struct(2)->str[pos + j]) = (ft_struct(2)->full);
+			j++;
 		}
 		pos = pos + (ft_struct(2)->width);
 		i++;
 	}
+	ft_putstr(ft_struct(2)->str);
 }
 
 void		ft_putnbr(int x)
@@ -244,34 +287,51 @@ void		ft_putnbr(int x)
 	}
 }
 
-void		ft_courante(char *str)
+void		ft_courante(void)
 {
 	int	i;
 	int	u;
-	int	*parstr;
 
 	i = 0;
 	u = ft_struct(2)->width;
-	parstr = (int*)malloc(sizeof(int) * ft_strlen(str));
-	while (str[i])
+	ft_putnbr(u);
+	ft_putstr("<-- je suis u le phallu\n");
+	while (ft_struct(2)->str[i])
 	{
-		if (str[i + 1] == '\n')
-			parstr[i] = ft_ai_je_la_chiasse(str, i);
-		i += u;
+		if (ft_struct(2)->str[i + 1] == '\n')
+			ft_ai_je_la_chiasse(i);
+		i++;
+		ft_putstr("Captain phallu 2\n");
 	}
-	while (str[i - u])
+	i = i - u;
+	ft_putnbr(i);
+	ft_putstr("<-- je suis i le phalli\n");
+	while ((ft_struct(2)->str[i]))
 	{
-		parstr[i - u] = ft_ai_je_la_chiasse(str, i - u);
+		ft_ai_je_la_chiasse(i);
+		ft_putstr("Captain phallu 3\n");
 		i++;
 	}
-	ft_struct(2)->strint = parstr;
 }
 
-int			ft_ai_je_la_chiasse(char *str, int i)
+void		ft_ai_je_la_chiasse(int i)
 {
-	if (str[i] == (ft_struct(2)->empty))
-		return (1);
-	return (0);
+	ft_putstr("ma bite est un space marine\n");
+	ft_putnbr(i);
+	ft_putstr("\n");
+	if (ft_struct(2)->str[i] == (ft_struct(2)->empty))
+	{
+		ft_putstr("ma bite est une tornade\n");
+		ft_struct(2)->strint[i] = 1;
+		ft_putstr("ma bite est une tornade\n");
+	}
+	else if (ft_struct(2)->str[i] == (ft_struct(2)->obstacle))
+	{
+		ft_struct(2)->strint[i] = 0;
+		ft_putstr("ma bite est un marabou\n");
+	}
+	else
+		ft_putstr("ma bite est un volcan\n");
 }
 
 char		*ft_read_grid_first_line(char *str)

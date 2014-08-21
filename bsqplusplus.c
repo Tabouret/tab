@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 15:29:00 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 17:06:00 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ t_params	*ft_struct(int call)
 	}
 	return (params);
 }
-/*
-void			ft_highway_to_segfaults(char **argv, int i)
-{
-	ft_open_file(argv, i);
-}
-*/
+
 void			ft_open_file(char **argv, int i)
 {
 	int			test;
@@ -110,6 +105,7 @@ void		ft_read_files(char *filename)
 	}
 	content[u + 1] = '\0';
 	ft_fuck_first_line(content);
+	ft_parse(ft_struct(2)->str);
 	free(content);
 }
 
@@ -133,41 +129,86 @@ void		ft_fuck_first_line(char *str)
 		j++;
 	}
 	reading[j] = '\n';
-	reading[j + 1] = '\0';
+	reading[j] = '\0';
 	ft_struct(2)->str = reading;
 }
 
-/*void		ft_gps(void)
+void	ft_parse(char *str)
 {
-	int w_width;
-	int w_height;
+	int		*parstr;
+	int		i;
+	int		max;
+	int		pos;
+	int		ubloop[0];
 
-	w_width = ft_struct(2)->width;
-	w_height = ft_struct(2)->height;
-
-}*/
-
-int		ft_check_empty (char **tab, int tab_check[], char empty)
-{
-	int x;
-	int y;
-
-	x = -1;
-	y = -1;
-
-	while (++x <= tab_check[2])
+	i = 0;
+	parstr = (int*)malloc(sizeof(int) * ft_strlen(str));
+	while (str[i])
 	{
-		while (++y <= tab_check[2])
+		if (str[i] == ft_struct(2)->obstacle)
+				parstr[i] = '0';
+		if (str[i] == ft_struct(2)->empty)
 		{
-			if (tab[x + tab_check[0]][y + tab_check[1]] != empty)
+			parstr[i] = ft_jaylachiasse(parstr, i);
+			if (parstr[i] > max)
 			{
-				return (0);
+				max = parstr[i];
+				pos = i;
 			}
 		}
+		i++;
 	}
-	return (1);
+	ubloop[0] = -10;
+	ft_jaylachiasse(ubloop , 1);
+	free(parstr);
+}
+int		ft_jaylachiasse(int *parstr, int i)
+{
+	int		b;
+	int		c;
+	int		min;
+
+	if (parstr[0] == -10)
+		ft_struct(2)->strint = parstr;
+	min = parstr[i + 1];
+	b = parstr[i + (ft_struct(2)->width) + 2];
+	if (min > b)
+		min = b;
+	c = parstr[i + (ft_struct(2)->width) + 1];
+	if (min > c)
+	   min = c;
+	return (min);
 }
 
+int		*ft_courante(char *str)
+{
+	int	i;
+	int	u;
+	int	*parstr;
+
+	i = 0;
+	u = ft_struct(2)->width;
+	parstr = (int*)malloc(sizeof(int) * ft_strlen(str));
+	while (str[i])
+	{
+		if (str[i + 1] == '\n')
+			parstr[i] = ft_ai_je_la_chiasse(str, i);
+		i += u;
+	}
+	while (str[i - u])
+	{
+		parstr[i - u] = ft_ai_je_la_chiasse(str, i - u);
+		i++;
+	}
+	return (parstr);
+}
+
+int		ft_ai_je_la_chiasse(char *str, int i)
+{
+	if (str[i] == (ft_struct(2)->empty))
+		return ('1');
+	return (0);
+}
 
 char		*ft_read_grid_first_line(char *str)
 {
@@ -226,6 +267,7 @@ char		*ft_strcat(char *dest, char *src)
 	}
 	dest[dest_size] = '\0';
 	ft_struct(2)->index_panda = dest_size;
+	free(src);
 	return (dest);
 }
 

@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 14:38:46 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 15:11:04 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_params	*ft_struct(int call)
 	}
 	if (call == 2)
 	{
-		ft_putstr("Acces struct\n");
 		return (params);
 	}
 	if (call == 3)
@@ -61,12 +60,9 @@ void			ft_open_file(char **argv, int i)
 {
 	int			test;
 
-	ft_putstr("Manfred 1\n");
 	test = open(argv[i], O_RDONLY);
 	ft_get_grid_param(test);
-	ft_putstr("Manfred 2\n");
 	ft_read_files(argv[i]);
-	ft_putstr("Manfred 3\n");
 }
 
 void			ft_get_grid_param(int i)
@@ -79,13 +75,11 @@ void			ft_get_grid_param(int i)
 	{
 		ft_struct(2)->error = 1;
 	}
-	buffer[BUFF_SIZE + 1] = '\0';
+	buffer[BUFF_SIZE] = '\0';
 	if (!(param = ft_read_grid_first_line(buffer)))
 	{
 		ft_struct(2)->error = 1;
 	}
-	ft_putstr("xXx_naruto_Mickael le dark BG_shinobi_xXx\n");
-
 	ft_struct(2)->width = ft_read_grid_second_line(buffer);
 	ft_struct(2)->height = ft_atoi(param);
 	while (*param >= '0' && *param <= '9')
@@ -105,7 +99,6 @@ void		ft_read_files(char *filename)
 	int			u;
 	char		buff[BUFF_SIZE + 1];
 
-	ft_putstr("Poilu\n");
 	u = (ft_struct(2)->width * (ft_struct(2)->height + ft_struct(2)->width));
 	content = (char*)malloc(sizeof(u + ft_struct(2)->width));
 	content[0] = '\0';
@@ -113,16 +106,10 @@ void		ft_read_files(char *filename)
 	while ((r = read(d, buff, BUFF_SIZE)) > 0)
 	{
 		buff[r] = '\0';
-		ft_putstr("read\n");
-		printf("%d____salut_moi_c'est content\n", ft_strlen(content));
-		printf("%d_moi c'est buffer\n", ft_strlen(buff));
-		printf("%d_moi c'est U\n", u);
 		content = ft_strcat(content, buff);
-		printf("read 2\n");
 	}
 	content[u + 1] = '\0';
 	ft_fuck_first_line(content);
-		ft_putstr("olol\n");
 	free(content);
 	ft_putstr(ft_struct(2)->str);
 }
@@ -138,20 +125,17 @@ void		ft_fuck_first_line(char *str)
 	while (str[i] != '\n')
 		i++;
 	i++;
-	reading = (char *)malloc(sizeof(ft_strlen(str) - i + 1));
+	reading = (char *)malloc(sizeof(char) * ft_strlen(str) - i + 1);
 
 	while (str[i] != '\0')
 	{
-		ft_putstr("Ciboulette\n");
 		reading[j] = str[i];
 		i++;
 		j++;
 	}
-	reading[j] = '\0';
-	ft_putstr("MANNY DERRIERE TOI !!!\n");
+	reading[j] = '\n';
+	reading[j + 1] = '\0';
 	ft_struct(2)->str = reading;
-	ft_putstr(reading);
-	ft_putstr("MANNY DERRIERE TOI !!! SERIEUX\n");
 }
 
 /*void		ft_gps(void)
@@ -243,7 +227,6 @@ char		*ft_strcat(char *dest, char *src)
 	}
 	dest[dest_size] = '\0';
 	ft_struct(2)->index_panda = dest_size;
-	printf("Les licornes pratiquent la sodomie\n");
 	return (dest);
 }
 

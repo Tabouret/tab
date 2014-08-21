@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/18 15:46:38 by elacombe          #+#    #+#             */
-/*   Updated: 2014/08/21 12:49:47 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 15:10:30 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_params
 	char		empty;
 	char		full;
 	char		*str;
+	char		*hey_i_love_to_be_compared_to_shit;
 }				t_params;
 
 //void			ft_highway_to_segfaults(char **argv, int i);

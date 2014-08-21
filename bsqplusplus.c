@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 15:11:04 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 15:29:00 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		ft_read_files(char *filename)
 	char		buff[BUFF_SIZE + 1];
 
 	u = (ft_struct(2)->width * (ft_struct(2)->height + ft_struct(2)->width));
-	content = (char*)malloc(sizeof(u + ft_struct(2)->width));
+	content = (char*)malloc(sizeof(char) * (u + ft_struct(2)->width) + 1);
 	content[0] = '\0';
 	d = open(filename, O_RDONLY);
 	while ((r = read(d, buff, BUFF_SIZE)) > 0)
@@ -111,7 +111,6 @@ void		ft_read_files(char *filename)
 	content[u + 1] = '\0';
 	ft_fuck_first_line(content);
 	free(content);
-	ft_putstr(ft_struct(2)->str);
 }
 
 void		ft_fuck_first_line(char *str)

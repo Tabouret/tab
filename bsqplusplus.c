@@ -6,7 +6,7 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 12:54:55 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 14:38:46 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,9 @@ void		ft_read_files(char *filename)
 		content = ft_strcat(content, buff);
 		printf("read 2\n");
 	}
-	ft_putstr(content);
+	content[u + 1] = '\0';
 	ft_fuck_first_line(content);
+		ft_putstr("olol\n");
 	free(content);
 	ft_putstr(ft_struct(2)->str);
 }
@@ -130,21 +131,26 @@ void		ft_fuck_first_line(char *str)
 {
 	char	*reading;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 0;
 	while (str[i] != '\n')
 		i++;
 	i++;
 	reading = (char *)malloc(sizeof(ft_strlen(str) - i + 1));
+
 	while (str[i] != '\0')
 	{
-		reading[i] = str[i];
+		ft_putstr("Ciboulette\n");
+		reading[j] = str[i];
 		i++;
+		j++;
 	}
-	reading[i] = '\0';
+	reading[j] = '\0';
 	ft_putstr("MANNY DERRIERE TOI !!!\n");
 	ft_struct(2)->str = reading;
-	printf("%s", reading);
+	ft_putstr(reading);
 	ft_putstr("MANNY DERRIERE TOI !!! SERIEUX\n");
 }
 

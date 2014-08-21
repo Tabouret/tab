@@ -6,13 +6,13 @@
 /*   By: pollier <pollier@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/08/19 22:56:29 by pollier           #+#    #+#             */
-/*   Updated: 2014/08/21 17:06:00 by pollier          ###   ########.fr       */
+/*   Updated: 2014/08/21 17:31:23 by pollier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft_header.h"
 
-int				main(int argc, char *argv[])
+int			main(int argc, char *argv[])
 {
 	int i;
 
@@ -51,7 +51,7 @@ t_params	*ft_struct(int call)
 	return (params);
 }
 
-void			ft_open_file(char **argv, int i)
+void		ft_open_file(char **argv, int i)
 {
 	int			test;
 
@@ -60,17 +60,17 @@ void			ft_open_file(char **argv, int i)
 	ft_read_files(argv[i]);
 }
 
-void			ft_get_grid_param(int i)
+void		ft_get_grid_param(int i)
 {
 	char		*param;
-	char		buffer[BUFF_SIZE + 1];
+	char		buffer[BUFF_SIZE + 2];
 	int			test;
 
 	if (!(test = read(i, buffer, BUFF_SIZE)))
 	{
 		ft_struct(2)->error = 1;
 	}
-	buffer[BUFF_SIZE] = '\0';
+	buffer[BUFF_SIZE + 1] = '\0';
 	if (!(param = ft_read_grid_first_line(buffer)))
 	{
 		ft_struct(2)->error = 1;
@@ -102,6 +102,7 @@ void		ft_read_files(char *filename)
 	{
 		buff[r] = '\0';
 		content = ft_strcat(content, buff);
+
 	}
 	content[u + 1] = '\0';
 	ft_fuck_first_line(content);
@@ -133,7 +134,7 @@ void		ft_fuck_first_line(char *str)
 	ft_struct(2)->str = reading;
 }
 
-void	ft_parse(char *str)
+void		ft_parse(char *str)
 {
 	int		*parstr;
 	int		i;
@@ -162,7 +163,7 @@ void	ft_parse(char *str)
 	ft_jaylachiasse(ubloop , 1);
 	free(parstr);
 }
-int		ft_jaylachiasse(int *parstr, int i)
+int			ft_jaylachiasse(int *parstr, int i)
 {
 	int		b;
 	int		c;
@@ -180,7 +181,7 @@ int		ft_jaylachiasse(int *parstr, int i)
 	return (min);
 }
 
-int		*ft_courante(char *str)
+int			*ft_courante(char *str)
 {
 	int	i;
 	int	u;
@@ -203,7 +204,7 @@ int		*ft_courante(char *str)
 	return (parstr);
 }
 
-int		ft_ai_je_la_chiasse(char *str, int i)
+int			ft_ai_je_la_chiasse(char *str, int i)
 {
 	if (str[i] == (ft_struct(2)->empty))
 		return ('1');
@@ -267,7 +268,6 @@ char		*ft_strcat(char *dest, char *src)
 	}
 	dest[dest_size] = '\0';
 	ft_struct(2)->index_panda = dest_size;
-	free(src);
 	return (dest);
 }
 
@@ -286,7 +286,7 @@ int			ft_atoi(char *s1)
 	return (nb);
 }
 
-int		ft_strnlen(char *str, int offset)
+int			ft_strnlen(char *str, int offset)
 {
 	int size;
 
@@ -296,7 +296,7 @@ int		ft_strnlen(char *str, int offset)
 	return (size - offset);
 }
 
-int		ft_strlen(char *str)
+int			ft_strlen(char *str)
 {
 	int	i;
 
